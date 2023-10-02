@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <h1>Server A</h1>
+    <h2>send message:<input type="text"><button>Send</button></h2>
+    <h2>reciver message:<span id="show"></span></h2>
+
+    <iframe id="iframe1" src="http://127.0.0.1:5501/index.html" frameborder="0"></iframe>
+    <script>
+      document.querySelector('#iframe1').addEventListener('load', () =>{
+        document.querySelector('#iframe1').contentWindow.postMessage('start', 'http://127.0.0.1:5501');
+      })
+
+      window.addEventListener('message', (e) => {
+        document.querySelector('#show').innerText = e.data;
+      });
+
+    </script>
+</body>
+</html>
